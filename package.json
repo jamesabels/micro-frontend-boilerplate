@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn lerna run start --parallel"
+    "start": "yarn lerna run --scope @typescript/* start --parallel"
   },
   "dependencies": {
     "lerna": "^4.0.0"
