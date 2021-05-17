@@ -1,0 +1,13 @@
+{
+  "name": "mfe-example",
+  "version": "0.0.1",
+  "description": "An example of a micro framework using Lerna and Module Federation",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn lerna run start --parallel"
+  },
+  "dependencies": {
+    "lerna": "^4.0.0"
+  }
+}

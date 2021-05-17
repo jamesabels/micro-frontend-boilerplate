@@ -1,0 +1,19 @@
+.dashboard { 
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    .dashboard-card {
+        align-items: center;
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: row;
+        width: 40%;
+        margin: 2rem;
+
+        .icon-wrap {
+            margin: 20px;
+        }
+    }
+}
