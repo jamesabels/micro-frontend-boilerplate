@@ -1,59 +1,50 @@
 const webpack = require('webpack')
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 
 module.exports = {
-    entry: ["./src/index"],
-    mode: "development",
+    entry: ['./src/index'],
+    mode: 'development',
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        contentBase: path.join(__dirname, 'dist'),
         port: 3000,
-        hot: true
+        hot: true,
+        publicPath: '/',
+        historyApiFallback: true,
     },
     output: {
-        publicPath: "auto",
+        publicPath: 'auto',
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"],
+        extensions: ['.ts', '.tsx', '.js'],
     },
     module: {
         rules: [
             {
                 test: /\.s[ac]ss$/i,
-                use: [
-                  "style-loader",
-                  "css-loader",
-                  "sass-loader",
-                ],
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
                 test: /\.css$/i,
-                use: [
-                  "style-loader",
-                  "css-loader",
-                ],
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /bootstrap\.tsx$/,
-                loader: "bundle-loader",
+                loader: 'bundle-loader',
                 options: {
-                  lazy: true,
+                    lazy: true,
                 },
             },
-            {   test: /\.tsx?$/, 
-                loader: "ts-loader", 
-                exclude: /node_modules/,
-            },
+            { test: /\.tsx?$/, loader: 'ts-loader', exclude: /node_modules/ },
             {
                 test: /\.(png|jpe?g|gif|woff(2)?|ttf|svg|eot)$/i,
                 use: [
-                  {
-                    loader: 'file-loader',
-                  },
+                    {
+                        loader: 'file-loader',
+                    },
                 ],
-            }
+            },
         ],
     },
     plugins: [
@@ -68,16 +59,16 @@ module.exports = {
                 editor: 'editor@http://localhost:3003/remoteEntry.js',
             },
             shared: {
-                'react': { eager: true, singleton: true },
+                react: { eager: true, singleton: true },
                 'react-dom': { eager: true, singleton: true },
                 'react-router-dom': { eager: true, singleton: true },
-                'valtio': { eager: true, singleton: true },
-                '@blueprintjs/core': { eager: true, singleton: true }
+                valtio: { eager: true, singleton: true },
+                '@blueprintjs/core': { eager: true, singleton: true },
             },
         }),
         new webpack.DefinePlugin({
-            "process.env": "{}",
-            global: {}
-        })
+            'process.env': '{}',
+            global: {},
+        }),
     ],
-};
+}
